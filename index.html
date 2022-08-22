@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Quiz!</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <header>
+        <section class="high-score">
+            <a class="high-score-link" href="./high-score.html">View High Scores</a>
+        </section>
+        <section class="timer">
+            <p class="timer-value">Time: 0</p>
+        </section>
+    </header>
+
+    <main>
+        <h1 class="question-field">
+            Coding Quiz Challenge
+        </h1>
+        <p class="body-p1">
+            Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will deduct 10 seconds from your time, so don't mess up! 
+        </p>
+        <p class="body-p2">
+            How fast can you finish the quiz?
+        </p>
+        <ul class="list-container">
+            <li>
+                <button class="button start">Start Quiz!</button>
+            </li>
+            <li>
+                <button class="button answer a1">Button 1</button>
+            </li>
+            <li>
+                <button class="button answer a2">Button 2</button>
+            </li>
+            <li>
+                <button class="button answer a3">Button 3</button>
+            </li>
+            <li>
+                <button class="button answer a4">Button 4</button>
+            </li>
+        </ul>
+    </main>
+
+    <footer>
+        <aside>
+            <h2 class="answer-check">
+                Correct!
+            </h2>
+        </aside>
+     
+    </footer>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
+
+<!-- 
+    Creating the base website in HTML:
+        Utilize 3 main elements
+            1. Flex box up top with two containers: a High-Score link on the left, and a timer on the right.
+            2. A single container in the middle that has a left-right margin of 25% at the largest size
+                - You may need to use 2 flex boxes to space the site. Experiment with what looks best
+            2.5 The cover-page, the question pages, and the "Enter High-Score" page
+            3. A footer that displays a top border and a "Correct!" or "Wrong!" message when the questions are answered.
+-->
