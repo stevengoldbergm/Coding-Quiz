@@ -27,6 +27,15 @@
         <p class="body-p2">
             How fast can you finish the quiz?
         </p>
+        
+        <section class="body-form">
+            <br>
+            <form id="high-score-form" action="saveHighScore()">
+                <label for="name">Enter Name:</label>
+                <input type="text" id="name" placeholder="Your name. . .">
+            </form>
+        </section>
+
         <ul class="list-container">
             <li>
                 <button class="button start">Start Quiz!</button>
@@ -43,12 +52,18 @@
             <li>
                 <button class="button answer a4">Button 4</button>
             </li>
+            <li>
+                <button class="button enter-high">Save High Score!</button>
+            </li>
+            <li>
+                <button class="button try-again">Try Again!</button>
+            </li>
         </ul>
     </main>
 
     <footer>
-        <aside>
-            <h2 class="answer-check">
+        <aside class="response-container">
+            <h2 class="answer-response">
                 Correct!
             </h2>
         </aside>

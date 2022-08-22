@@ -12,6 +12,7 @@
 
 body {
     margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
 
@@ -23,7 +24,7 @@ header {
     background-color: rgb(230, 125, 70);
     color: rgb(245, 240, 235);
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
 }
 
 .high-score-link {
@@ -32,8 +33,15 @@ header {
     text-decoration: none;
 }
 
+.timer {
+    margin: 0;
+    padding: 7px 0;
+}
+
 .timer-value {
+    display: inline;
     margin-right: 20px;
+
 }
 
 /* Main section */
@@ -46,6 +54,7 @@ main {
 }
 
 .question-field {
+    margin-top: 35px;
     width: 450px;
     text-align: center;
 }
@@ -112,12 +121,32 @@ aside {
     color: rgb(205, 200, 195);
     border-top: 3px solid rgb(205, 200, 195);
     width: 450px;
+    transition: all 1s ease;
 }
 
-/* High Score formatting */
-.high-score-box {
-    width: 175px;
+/* High-Score entry formatting */
+.enter-high {
+    display: none;
 }
+
+.try-again {
+    display: none;
+}
+
+#high-score-form {
+    display:block;
+    justify-self: left;
+}
+
+/* High-Score page formatting */
+.body-form {
+    display: none;
+    width: 450px;
+}
+
+/* .high-score-box {
+    display: none;
+} */
 
 .high-score-list {
     border-bottom: 1px solid rgb(205, 200, 195);
@@ -132,4 +161,24 @@ aside {
     align-self: center;
 }
 
+@media screen and (max-width: 500px) {
+    main, footer {
+        padding: 0 5%;
+    }
+    .question-field {
+        width: 100%;
+    }
+    main p {
+        width: 100%;
+    }
+    .list-container {
+        width: 100%;
+    }
+    aside {
+        width: 100%;
+    }
+    .body-form {
+        width: 100%;
+    }
+}
 
