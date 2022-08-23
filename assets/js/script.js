@@ -1,5 +1,3 @@
-// How to make a timed question game?
-
 // Identify the values that will change and create DOM objects for reference
 var timerEl = document.querySelector(".timer-value");
 var startButtonEl = document.querySelector(".start");
@@ -10,14 +8,15 @@ var firstButtonEl = document.querySelector(".a1");
 var secondButtonEl = document.querySelector(".a2");
 var thirdButtonEl = document.querySelector(".a3");
 var fourthButtonEl = document.querySelector(".a4");
-var enterHighScore = document.querySelector(".enter-high")
-var highScoreValue = document.querySelector(".body-form")
-var tryAgain = document.querySelector(".try-again")
+var highScoreButtonEl = document.querySelector(".enter-high");
+var highScoreFormEl = document.querySelector("#high-score-form");
+var nameEntry = document.querySelector("#name");
+var highScoreValue = document.querySelector(".body-form");
+var playAgainButtonEl = document.querySelector(".try-again");
 var bodyParagraphEl1 = document.querySelector(".body-p1");
 var bodyParagraphEl2 = document.querySelector(".body-p2");
 var responseContainer = document.querySelector(".response-container");
 var answerResponse = document.querySelector(".answer-response");
-
 
 // Create the questions and their associated answers as objects.
 var first = {
@@ -34,8 +33,8 @@ var second = {
 
 var third = {
     question: "Which variable naming convention is used in JavaScript?",
-    answer: "camalCase",
-    options: ["camalCase", "PascalCase", "snake_case", "kebab-case"]
+    answer: "camelCase",
+    options: ["camelCase", "PascalCase", "snake_case", "kebab-case"]
 };
 
 var fourth = {
@@ -49,24 +48,68 @@ var fifth = {
     answer: "object",
     options: ["object", "subject", "string", "integer"]
 };
-console.log(fifth.answer)
 
-// Not sure if I need this anymore. Holding onto it just in case
-        // var questionBlock = {
-        //     questions: [first.question, second.question, third.question, fourth.question, fifth.question],
-        //     goodAnswers: [first.answer, second.answer, third.answer, fourth.answer, fifth.answer],
-        // }
+var first = {
+    question: "This JavaScript function is used to integrate a looping timer.",
+    answer: "setInterval()",
+    options: ["setInterval()", "setTimeout()","moveBy()", "focus()"]
+};
 
-        // console.log(questionBlock.goodAnswers[0])
+var second = {
+    question: "This JavaScript function displays a pop-up box with a pre-defined message and an OK button.",
+    answer: "alert()",
+    options: ["alert()", "confirm()", "prompt()", "print()"]
+};
 
+var third = {
+    question: "Which variable naming convention is used in JavaScript?",
+    answer: "camelCase",
+    options: ["camelCase", "PascalCase", "snake_case", "kebab-case"]
+};
+
+var fourth = {
+    question: "In which part of the HTML document should a developer place the link to their JavaScript file?",
+    answer: "<body>",
+    options: ["<body>", "<head>", "<header>", "<meta>"]
+};
+
+var fifth = {
+    question: "What data type is used for variables in JavaScript?",
+    answer: "object",
+    options: ["object", "subject", "string", "integer"]
+};
+
+// Start the function on click
 // Set up listener for the Start Button
 startButtonEl.addEventListener("click", startQuiz);
 
-
-// Start the function on click
 function startQuiz() {
-    // Turn off and hide the start button, and paragraphs. 
+    // Start Timer
+    var quizComplete = false;
+    var secondsLeft = 0;
+    startTimer()
+    function startTimer() {
+    // When the game starts, there needs to be a timer set to 75 seconds
+        secondsLeft = 75;
+        timerEl.textContent = secondsLeft;
+        setInterval(function() {
+            if ((quizComplete == true) && (secondsLeft >= 0)) {
+                clearInterval();
+            } else if (secondsLeft <= 0) {
+                secondsLeft = 0;
+                timerEl.textContent = secondsLeft;
+                clearInterval();
+                youLose();
+            } else {
+                secondsLeft--;
+                timerEl.textContent = secondsLeft;
+            }
+        }, 1000)
+    }
+
+    // Turn off and hide the start button, playAgain button and paragraphs. 
     // Reveal quiz buttons.
+    playAgainButtonEl.style.display = "none";
     startButtonEl.disabled = true;
     startButtonEl.style.display = "none";
     listContainer.style.alignItems = "flex-start"; // can't use "left"
@@ -80,12 +123,11 @@ function startQuiz() {
     answerButtonEl.forEach(Element => {
         Element.style.display = "block"
     });
-    // console.log(answerButtonEl);
 
     // Set up questionnaire variables
-    questionSelector = [first, second, third, fourth, fifth];
-    randomQuestion = Math.floor(Math.random() * questionSelector.length);
-    trueAnswer = ""
+    var questionSelector = [first, second, third, fourth, fifth];
+    var randomQuestion = Math.floor(Math.random() * questionSelector.length);
+    var trueAnswer = ""
     console.log(randomQuestion);
 
     askQuestion();
@@ -171,6 +213,8 @@ function startQuiz() {
             Element.style.display = "none";
         });
 
+        quizComplete = true;
+
         questionField.textContent = "You Win!";
         bodyParagraphEl1.style.display = "block";
         bodyParagraphEl2.style.display = "block";
@@ -178,19 +222,85 @@ function startQuiz() {
         bodyParagraphEl2.textContent = "Save High Score?";
         highScoreValue.style.display = "block";
         listContainer.style.marginRight = "10px";
-        enterHighScore.style.display = "block";
-        enterHighScore.style.marginRight = "5px";
-        // tryAgain.style.display = "block"; // Add this to the game over screen
+        highScoreButtonEl.style.display = "block";
+        highScoreFormEl.addEventListener("submit", saveHighScore);
     }
-   
+
+    function saveHighScore(event) {
+        event.preventDefault();
+
+        console.log(nameEntry)
+        console.log(nameEntry.value)
+
+        var nameEntryValue = nameEntry.value
+
+        if (!nameEntry.value) {
+            return;
+        } else {
+            //create highscore object
+            var highScoreSave = {
+                name: nameEntryValue + ":",
+                score: " " + secondsLeft,
+            }
+            console.log(highScoreSave)
+
+            // Create an array object and pull the existing scores into it
+            var highScoreArray = []
+
+            // Check for nulls
+            if (JSON.parse(localStorage.getItem("highScore")) === null) {
+                highScoreArray.push(highScoreSave);
+            } else {
+                highScoreArray = JSON.parse(localStorage.getItem("highScore"));
+                highScoreArray.push(highScoreSave);
+                console.log("highscorearray",highScoreArray)
+            }
+
+            // Push new highScoreSave object to the array
+            localStorage.setItem("highScore", JSON.stringify(highScoreArray))
+
+            // Clear form, show save took place
+            nameEntry.placeholder = "Score Saved!"
+            nameEntry.value = ""           
+            
+            // Replace Save button with Play Again button
+            playAgainButtonEl.style.display = "block";
+            highScoreButtonEl.style.display = "none";
+
+        }
+
+    }
+
     // Create a function to save your initials and time after completing the quiz. Use the link below for details.
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select
     // unhide the box and buttons to test function, otherwise you'll go insane.
     // Set the event handlers inside the function for the high score
 
-    var secondsLeft = 0
-    // When the game starts, there needs to be a timer set to 75 seconds
-    // NOTE: The game can function without the timer. 
-    // Add the timer and the high-scores last.
+
+
+
+    function youLose() {
+        answerButtonEl.forEach(Element => {
+            Element.style.display = "none";
+        });
+
+        questionField.textContent = "You Lose. . .";
+        bodyParagraphEl1.style.display = "block";
+        bodyParagraphEl2.style.display = "block";
+        bodyParagraphEl1.textContent = "You ran out of time."
+        bodyParagraphEl2.textContent = "Would you like to try again?";
+
+        playAgainButtonEl.style.display = "block"; 
+    }
+    
 }
+
+// Play again after saving your game
+playAgainButtonEl.addEventListener("click", refresh);
+
+function refresh() {
+    location.href = location.href;
+}
+
+
 
