@@ -18,7 +18,7 @@ function scoreBoard() {
     }
     
     // Function to sort the highScore items by the index.score values
-    function compare(a, b) {
+    function checkScores(a, b) {
         if (a.score < b.score) {
             return -1;
         } else if (a.score > b.score) {
@@ -29,7 +29,7 @@ function scoreBoard() {
     }
     
     // Sort that array
-    highscore.sort(compare);
+    highscore.sort(checkScores);
     console.log(highscore); // it's sorted!
     
     // Create li items for each result and append them to the ul

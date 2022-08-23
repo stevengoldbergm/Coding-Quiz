@@ -1,4 +1,4 @@
-// Identify the values that will change and create DOM objects for reference
+// Create DOM objects for reference
 var timerEl = document.querySelector(".timer-value");
 var startButtonEl = document.querySelector(".start");
 var answerButtonEl = document.querySelectorAll(".answer");
@@ -49,47 +49,17 @@ var fifth = {
     options: ["object", "subject", "string", "integer"]
 };
 
-var first = {
-    question: "This JavaScript function is used to integrate a looping timer.",
-    answer: "setInterval()",
-    options: ["setInterval()", "setTimeout()","moveBy()", "focus()"]
-};
-
-var second = {
-    question: "This JavaScript function displays a pop-up box with a pre-defined message and an OK button.",
-    answer: "alert()",
-    options: ["alert()", "confirm()", "prompt()", "print()"]
-};
-
-var third = {
-    question: "Which variable naming convention is used in JavaScript?",
-    answer: "camelCase",
-    options: ["camelCase", "PascalCase", "snake_case", "kebab-case"]
-};
-
-var fourth = {
-    question: "In which part of the HTML document should a developer place the link to their JavaScript file?",
-    answer: "<body>",
-    options: ["<body>", "<head>", "<header>", "<meta>"]
-};
-
-var fifth = {
-    question: "What data type is used for variables in JavaScript?",
-    answer: "object",
-    options: ["object", "subject", "string", "integer"]
-};
-
-// Start the function on click
 // Set up listener for the Start Button
 startButtonEl.addEventListener("click", startQuiz);
 
+// Start the function on click
 function startQuiz() {
     // Start Timer
     var quizComplete = false;
     var secondsLeft = 0;
     startTimer()
     function startTimer() {
-    // When the game starts, there needs to be a timer set to 75 seconds
+        // When the game starts, there needs to be a timer set to 75 seconds
         secondsLeft = 75;
         timerEl.textContent = secondsLeft;
         setInterval(function() {
