@@ -94,6 +94,7 @@ function startQuiz() {
         timerEl.textContent = secondsLeft;
         setInterval(function() {
             if ((quizComplete == true) && (secondsLeft >= 0)) {
+                timerEl.textContent = secondsLeft;
                 clearInterval();
             } else if (secondsLeft <= 0) {
                 secondsLeft = 0;
