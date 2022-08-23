@@ -27,11 +27,11 @@ See the published site: [here](https://stevengoldbergm.github.io/Coding-Quiz/)
     - 5 different quiz questions will be shown in random order
         - Click on the correct answer to move to the next question
         - Clicking on an incorrect answer will reduce the timer by 10 seconds
-    - If you finish the quiz, enter your name in the input field and press [Enter] or click the button to save your score to local memory
+    - If you finish the quiz, enter your name in the input field and press [Enter] (or click the button) to save your score to local memory
 
 - Upon clicking "View High Scores"
     - Click "Reset Scores" to clear any high scores from local memory
-    - Click "Return to Quiz" to 
+    - Click "Return to Quiz" to navigate back to the main quiz page.
 
 ## Images 
 ![Buttons change color when pressed, and answer feedback is displayed.](./assets/imgs/cQuiz_2.png)
